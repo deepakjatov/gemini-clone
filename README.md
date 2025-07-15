@@ -6,6 +6,48 @@ A fully functional, responsive, and visually appealing Gemini-style conversation
 
 The application is deployed and ready for testing. You can access it at the local development server or deploy it to Vercel/Netlify.
 
+## 📸 Gemini Clone UI Screenshots
+
+### 🏠 Home Page – Chat Dark Mode (Desktop)
+![Home Chat Dark](./public/home%20page%20chat%20dark%20mode.png)
+
+### 📱 Home Page – Chat Dark Mode (Mobile)
+![Home Chat Dark Mobile](./public/home%20page%20chat%20dark%20mode%20mobileview.png)
+
+---
+
+### 🏠 Home Page – Chat Light Mode (Desktop)
+![Home Chat Light](./public/home%20page%20chat%20light%20mode.png)
+
+### 📱 Home Page – Chat Light Mode (Mobile)
+![Home Chat Light Mobile](./public/home%20page%20chat%20light%20mode%20mobileview.png)
+
+---
+
+### 🏁 Starter Page – Dark Mode (Desktop)
+![Starter Dark](./public/home%20page%20starter%20dark%20mode.png)
+
+### 📱 Starter Page – Dark Mode (Mobile)
+![Starter Dark Mobile](./public/home%20page%20starter%20dark%20mode%20mobileview.png)
+
+---
+
+### 🏁 Starter Page – Light Mode (Desktop)
+![Starter Light](./public/home%20page%20starter%20light%20mode.png)
+
+### 📱 Starter Page – Light Mode (Mobile)
+![Starter Light Mobile](./public/home%20page%20starter%20light%20mode%20mobileview.png)
+
+---
+
+### 📱 Sidebar – Chat Dark Mode (Mobile)
+![Sidebar Dark Mobile](./public/sidebar%20chat%20dark%20mode%20mobileview.png)
+
+### 📱 Sidebar – Chat Light Mode (Mobile)
+![Sidebar Light Mobile](./public/sidebar%20chat%20light%20mode%20mobileview.png)
+
+
+
 ## ✨ Features
 
 ### 🔐 Authentication System
