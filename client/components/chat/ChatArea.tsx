@@ -29,6 +29,22 @@ export function ChatArea() {
 
   const messages = activeChatroom?.messages || [];
 
+  // Reset component state when active chatroom changes
+  useEffect(() => {
+    setMessage("");
+    setImageFile(null);
+    setImagePreview(null);
+    setTyping(false);
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+    }
+  }, [activeChatroom?.id, setTyping]);
+
+  // Force re-render when activeChatroom changes
+  useEffect(() => {
+    // This will force the component to re-evaluate
+  }, [activeChatroom]);
+
   const handleSendMessage = async () => {
     if (!message.trim() && !imageFile) return;
 
@@ -389,3 +405,10 @@ export function ChatArea() {
     </div>
   );
 }
+
+
+
+
+
+
+

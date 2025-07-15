@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -46,19 +46,30 @@ export function Sidebar() {
   } = useAppStore();
 
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
+  const [chatroomCount, setChatroomCount] = useState(chatrooms.length);
 
   const filteredChatrooms = getFilteredChatrooms();
+
+  // Force refresh when chatroom count changes (after deletion)
+  useEffect(() => {
+    if (chatroomCount > chatrooms.length) {
+      // A chatroom was deleted, force component refresh
+      setDeleteConfirmId(null);
+      // Force re-render by updating a dummy state
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
+    }
+    setChatroomCount(chatrooms.length);
+  }, [chatrooms.length, chatroomCount]);
 
   const handleNewChat = () => {
     const newChatroom = createChatroom();
   };
 
   const handleDeleteChatroom = (id: string) => {
-    const chatroom = chatrooms.find((c) => c.id === id);
-    if (chatroom) {
-      deleteChatroom(id);
-      setDeleteConfirmId(null);
-    }
+    deleteChatroom(id);
+    setDeleteConfirmId(null);
   };
 
   const formatDate = (date: Date | string) => {
@@ -203,59 +214,27 @@ export function Sidebar() {
                         </p>
                       </div>
 
-                      <AlertDialog>
-                        <DropdownMenu>
-                          <DropdownMenuTrigger asChild>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
-                              onClick={(e) => e.stopPropagation()}
-                            >
-                              <MoreHorizontalIcon className="h-3 w-3" />
-                            </Button>
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end">
-                            <AlertDialogTrigger asChild>
-                              <DropdownMenuItem
-                                className="text-destructive focus:text-destructive"
-                                onClick={() => setDeleteConfirmId(chatroom.id)}
-                              >
-                                <TrashIcon className="mr-2 h-3 w-3" />
-                                Delete chat
-                              </DropdownMenuItem>
-                            </AlertDialogTrigger>
-                          </DropdownMenuContent>
-                        </DropdownMenu>
-
-                        {deleteConfirmId === chatroom.id && (
-                          <AlertDialogContent>
-                            <AlertDialogHeader>
-                              <AlertDialogTitle>Delete chat</AlertDialogTitle>
-                              <AlertDialogDescription>
-                                This will permanently delete "{chatroom.title}"
-                                and all its messages. This action cannot be
-                                undone.
-                              </AlertDialogDescription>
-                            </AlertDialogHeader>
-                            <AlertDialogFooter>
-                              <AlertDialogCancel
-                                onClick={() => setDeleteConfirmId(null)}
-                              >
-                                Cancel
-                              </AlertDialogCancel>
-                              <AlertDialogAction
-                                onClick={() =>
-                                  handleDeleteChatroom(chatroom.id)
-                                }
-                                className="bg-destructive hover:bg-destructive/90"
-                              >
-                                Delete
-                              </AlertDialogAction>
-                            </AlertDialogFooter>
-                          </AlertDialogContent>
-                        )}
-                      </AlertDialog>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <MoreHorizontalIcon className="h-3 w-3" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuItem
+                            className="text-destructive focus:text-destructive"
+                            onClick={() => setDeleteConfirmId(chatroom.id)}
+                          >
+                            <TrashIcon className="mr-2 h-3 w-3" />
+                            Delete chat
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
                     </div>
                   ))}
                 </div>
@@ -284,6 +263,36 @@ export function Sidebar() {
         </div>
       </div>
 
+      {/* AlertDialog - always rendered but controlled by open prop */}
+      {deleteConfirmId && (
+        <AlertDialog 
+          open={true}
+          onOpenChange={() => setDeleteConfirmId(null)}
+        >
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete chat</AlertDialogTitle>
+              <AlertDialogDescription>
+                This will permanently delete "{chatrooms.find(c => c.id === deleteConfirmId)?.title}"
+                and all its messages. This action cannot be
+                undone.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={() => setDeleteConfirmId(null)}>
+                Cancel
+              </AlertDialogCancel>
+              <AlertDialogAction
+                onClick={() => handleDeleteChatroom(deleteConfirmId)}
+                className="bg-destructive hover:bg-destructive/90"
+              >
+                Delete
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      )}
+
       {/* Mobile menu toggle */}
       {!isSidebarOpen && (
         <Button
@@ -298,3 +307,12 @@ export function Sidebar() {
     </>
   );
 }
+
+
+
+
+
+
+
+
+

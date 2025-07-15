@@ -133,7 +133,7 @@ export const useAppStore = create<AppState>()(
         });
       },
 
-      setActiveChatroom: (id) => set({ activeChatroomId: id }),
+      setActiveChatroom: (id) => set({ activeChatroomId: id, isTyping: false }),
 
       addMessage: (chatroomId, messageData) => {
         const message: Message = {
@@ -170,7 +170,9 @@ export const useAppStore = create<AppState>()(
       // Computed getters
       getActiveChatroom: () => {
         const { chatrooms, activeChatroomId } = get();
-        return chatrooms.find((room) => room.id === activeChatroomId) || null;
+        if (!activeChatroomId) return null;
+        const chatroom = chatrooms.find((room) => room.id === activeChatroomId);
+        return chatroom || null;
       },
 
       getFilteredChatrooms: () => {
@@ -229,3 +231,6 @@ export const useAppStore = create<AppState>()(
     },
   ),
 );
+
+
+
