@@ -311,10 +311,6 @@ Modify `tailwind.config.ts` for theme adjustments.
 4. Push to branch: `git push origin feature/amazing-feature`
 5. Open a Pull Request
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 🙏 Acknowledgments
 
 - **Kuvaka Tech** for the assignment opportunity
@@ -325,10 +321,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Assignment Completed By**: [Your Name]  
-**Submission Date**: [Current Date]  
-**Time Spent**: ~8 hours  
-**Live Demo**: [Deployment URL]  
-**Repository**: [GitHub URL]
+**Assignment Completed By**: Deepak Jatov  
+**Submission Date**: 7/15/2025  
+**Time Spent**: ~14 hours  
+**Live Demo**: https://gemini-clone-by-deepak-jatov.netlify.app
+**Repository**: https://github.com/deepakjatov/gemini-clone
 
 For any questions or clarifications, please reach out via email or GitHub issues.
