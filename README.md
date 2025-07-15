@@ -366,7 +366,7 @@ Modify `tailwind.config.ts` for theme adjustments.
 **Assignment Completed By**: Deepak Jatov  
 **Submission Date**: 7/15/2025  
 **Time Spent**: ~14 hours  
-**Live Demo**: https://gemini-clone-by-deepak-jatov.netlify.app
-**Repository**: https://github.com/deepakjatov/gemini-clone
+**Live Demo**: https://gemini-clone-by-deepak-jatov.netlify.app<br />
+**Repository**: https://github.com/deepakjatov/gemini-clone<br />
 
 For any questions or clarifications, please reach out via email or GitHub issues.
